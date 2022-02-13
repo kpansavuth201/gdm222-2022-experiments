@@ -8,7 +8,7 @@ public class Quiz02 : MonoBehaviour
         // To do : please help me write this function
     }
                                         
-    private void RemoveNode(PersonNode nodeToRemove) {
+    private void RemoveNode(PersonNode headNode, PersonNode nodeToRemove) {
         // To do : please help me write this function
     }
 
@@ -49,11 +49,11 @@ public class Quiz02 : MonoBehaviour
 
         PrintLinkedList(headNode); //Alice ,John ,Bob ,Mary ,Catherine
 
-        RemoveNode(bob);
+        RemoveNode(headNode, bob);
 
         PrintLinkedList(headNode); //Alice ,John ,Mary ,Catherine
 
-        RemoveNode(mary);
+        RemoveNode(headNode, mary);
 
         PrintLinkedList(headNode); //Alice ,John ,Catherine
     }
