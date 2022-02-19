@@ -6,12 +6,12 @@ public class TestScope : MonoBehaviour
 {
     void Start()
     {
-        TestScope();
+        Test();
     }
 
     int x = 10;
     
-    private void TestScope()
+    private void Test()
     {
         for(int i = 0; i < 10; ++i) {
             Debug.Log("for loop i : " + i);
