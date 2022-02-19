@@ -6,10 +6,32 @@ public class Quiz02 : MonoBehaviour
 {
     private void AddNode(PersonNode currentNode, PersonNode newNode) {
         // To do : please help me write this function
+        PersonNode tempNode = currentNode.NextNode;
+
+        currentNode.NextNode = newNode;
+
+        newNode.NextNode = tempNode;
     }
                                         
     private void RemoveNode(PersonNode headNode, PersonNode nodeToRemove) {
         // To do : please help me write this function
+        PersonNode nodeBefore = null;
+        PersonNode nodeAfter = nodeToRemove.NextNode;
+
+        PersonNode curNode = headNode;
+        while(nodeBefore == null) {
+            if( curNode.NextNode == nodeToRemove ) {
+                nodeBefore = curNode;
+            } else {
+                curNode = curNode.NextNode;
+                if( curNode == null ) {
+                    break;
+                }
+            }            
+        }
+
+        nodeBefore.NextNode = nodeAfter;
+        nodeToRemove.NextNode = null;
     }
 
     private void PrintLinkedList(PersonNode headNode) {
@@ -56,5 +78,5 @@ public class Quiz02 : MonoBehaviour
         RemoveNode(headNode, mary);
 
         PrintLinkedList(headNode); //Alice ,John ,Catherine
-    }
+    }    
 }
