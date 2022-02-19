@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Quiz03 : MonoBehaviour
+public class ObjectPool : MonoBehaviour
 {
    public GameObject BulletPrefab;
 

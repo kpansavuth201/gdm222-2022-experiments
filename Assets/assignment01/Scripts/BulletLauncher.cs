@@ -6,7 +6,7 @@ public class BulletLauncher : MonoBehaviour
 {
     private List<GameObject> bulletList = new List<GameObject>();
 
-    public Quiz03 ObjectPool;
+    public ObjectPool ObjectPool;
     
     private const float BULLET_SPEED = 3f;
     private const float OUT_OF_SCREEN_DISTANCE = 10f;
