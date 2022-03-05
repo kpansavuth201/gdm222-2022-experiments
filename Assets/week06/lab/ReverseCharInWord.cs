@@ -6,7 +6,7 @@ public class ReverseCharInWord : MonoBehaviour
 {
     // char []characters;
     
-    private string Reverse(string word) {
+    public static string Reverse(string word) {
         // char []characters = word.ToCharArray();
         
         List<char> charList = new List<char>();
