@@ -11,5 +11,7 @@ public class TestFibonacci : MonoBehaviour
         
         for( int n = 1; n < 10; ++n )
             Debug.Log( "Fibonacci (Recursive Approach) n " + n + " : " + RecursiveUtility.FibonacciRecursive(n) );
+
+        // Debug.Log(RecursiveUtility.SumTo(10));
     }
 }

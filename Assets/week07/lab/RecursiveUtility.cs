@@ -28,4 +28,12 @@ public class RecursiveUtility
         if (n == 1) return 1; //To return the second Fibonacci number   
         return FibonacciRecursive(n - 1) + FibonacciRecursive(n - 2);  
     }
+
+    // SumTo
+    // 1 + 2 + 3 + 4 + 5 + 6 + ... + n
+    public static int SumTo(int n) {
+
+        // Lab : Please write this function in recursive approach
+        return 0;
+    }
 }
