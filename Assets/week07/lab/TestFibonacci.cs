@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TestFibonacci : MonoBehaviour
 {    
-    async void Start()
+    void Start()
     {
         for( int n = 1; n < 10; ++n )
             Debug.Log( "Fibonacci (Iterative Approach) n " + n + " : " + RecursiveUtility.FibonacciIterative(n) );
