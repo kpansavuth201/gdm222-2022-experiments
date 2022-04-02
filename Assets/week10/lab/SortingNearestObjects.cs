@@ -10,7 +10,7 @@ public class SortingNearestObjects : MonoBehaviour
 
     private const int NUMBER_OF_OBJECTS = 20;
 
-    private const int NUMBER_OF_RENDER_OBJECT = 10;
+    private const int NUMBER_OF_RENDER_OBJECT = 5;
     
     private void Awake() {
         Initialize();
@@ -35,10 +35,34 @@ public class SortingNearestObjects : MonoBehaviour
     }
 
     void Update() {
-       RenderOnlyNearestObject();
+        SortObjectListByNearestDistance();
+        RenderOnlyNearestObject();
     }
 
-    private void RenderOnlyNearestObject() {
+    private void SortObjectListByNearestDistance() {
+        for (int i = 0; i < objectList.Count - 1; i++) {
+            for (int j = 0; j < objectList.Count - i - 1; j++) {
+                float distanceA = Vector3.Distance(
+                    PlayerObject.transform.position,
+                    objectList[j].transform.position
+                );
+                float distanceB = Vector3.Distance(
+                    PlayerObject.transform.position,
+                    objectList[j + 1].transform.position
+                );
+
+                if(distanceA > distanceB) {
+                    // Swap
+                    GameObject temp = objectList[j];
+                    objectList[j] = objectList[j + 1];
+                    objectList[j + 1] = temp;
+
+                }
+            }
+        }
+    }
+
+    private void RenderOnlyNearestObject() {        
         for(int i = 0; i < objectList.Count; ++i) {
             bool isRender = (i < NUMBER_OF_RENDER_OBJECT);
             objectList[i].SetActive(isRender);
