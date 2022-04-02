@@ -40,6 +40,7 @@ public class SortingNearestObjects : MonoBehaviour
     }
 
     private void SortObjectListByNearestDistance() {
+        // Bubble Sort
         for (int i = 0; i < objectList.Count - 1; i++) {
             for (int j = 0; j < objectList.Count - i - 1; j++) {
                 float distanceA = Vector3.Distance(
@@ -56,10 +57,11 @@ public class SortingNearestObjects : MonoBehaviour
                     GameObject temp = objectList[j];
                     objectList[j] = objectList[j + 1];
                     objectList[j + 1] = temp;
-
                 }
             }
         }
+
+        // Try change sorting logic to selection sort
     }
 
     private void RenderOnlyNearestObject() {        
