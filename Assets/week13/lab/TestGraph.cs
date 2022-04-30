@@ -79,5 +79,40 @@ public class TestGraph : MonoBehaviour
 
         PrintGraph(adjList);
         PrintGraphWithMappedName(adjList);
+
+        BreadthFirstSearch(adjList, 1);
     }
+
+    public void BreadthFirstSearch(List< List<int> > adjList, int startVertex) {
+        Debug.Log("BFS start with vertex " + startVertex);
+        
+        startVertex = startVertex - OFFSET_INDEX;
+
+        bool []visitied = new bool[VERTEX_NAMES.Length];
+        for(int i = 0; i < visitied.Length; ++i) {
+            visitied[i] = false;
+        }
+
+        List<int> queueList = new List<int>();
+
+        // Visit first vertex
+        queueList.Add(startVertex);
+        visitied[startVertex] = true;
+
+        while( queueList.Count > 0 ) {
+            int currentVertex = queueList[0];
+            Debug.Log("Visit " + (currentVertex + OFFSET_INDEX));
+
+            queueList.RemoveAt(0);
+
+            List<int> connectedVertexList = adjList[currentVertex];
+            foreach(int connectVertex in connectedVertexList) {
+                if( !visitied[connectVertex] ) {
+                    queueList.Add(connectVertex);
+                    visitied[connectVertex] = true;
+                }
+            }
+        }
+    }
+
 }
