@@ -13,9 +13,9 @@ public class MonsterExample : MonoBehaviour
 
     private const float MOVE_SPEED = 1f;
 
-    private const float AGGRESSIVE_DISTANCE = 3f;
+    private const float AGGRESSIVE_DISTANCE = 7f;
 
-    private const float HOME_DISTANCE = 10f;
+    private const float HOME_DISTANCE = 30f;
 
     private bool CheckMonsterAggresssive() {
         float distance = Vector3.Distance(
@@ -30,7 +30,7 @@ public class MonsterExample : MonoBehaviour
         }
     }
 
-    private bool CheckMonsterForFromHome() {
+    private bool CheckMonsterFarFromHome() {
         float distance = Vector3.Distance(
             Monster.transform.position,
             MonsterHomeLocator.position
@@ -49,6 +49,38 @@ public class MonsterExample : MonoBehaviour
 
     private void Initialize() {
         finiteStateMachine = new FiniteStateMachine();
+
+        StateMachine stateHome = new StateMachine("HOME");
+
+        stateHome.OnEnter += () => {
+            SetColor(Monster, Color.green);
+        };
+        stateHome.OnUpdate += () => {
+            bool detectPlayer = CheckMonsterAggresssive();
+            bool farFromHome = CheckMonsterFarFromHome();
+            if(detectPlayer && !farFromHome) {
+                finiteStateMachine.ChangeCurrentState("CHASE");
+            }
+        };
+
+        finiteStateMachine.AddState(stateHome);
+
+        StateMachine stateChase = new StateMachine("CHASE");
+
+        stateChase.OnEnter += () => {
+            SetColor(Monster, Color.red);
+        };
+        stateChase.OnUpdate += () => {
+            bool detectPlayer = CheckMonsterAggresssive();
+            bool farFromHome = CheckMonsterFarFromHome();
+            if( !detectPlayer || farFromHome ) {
+                finiteStateMachine.ChangeCurrentState("HOME");
+            }
+        };
+
+        finiteStateMachine.AddState(stateChase);
+
+        finiteStateMachine.ChangeCurrentState("HOME");
     }
     
     void Awake() {

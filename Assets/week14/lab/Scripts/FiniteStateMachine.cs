@@ -14,7 +14,6 @@ public class StateMachine {
     public DelegateNoArg OnEnter;
     public DelegateNoArg OnExit;
     public DelegateNoArg OnUpdate;
-    public DelegateNoArg OnFixedUpdate;
 
     public void Enter() {
         OnEnter?.Invoke();
